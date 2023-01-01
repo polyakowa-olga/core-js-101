@@ -27,8 +27,17 @@
  *  21 => 'Fizz'
  *
  */
-function getFizzBuzz(/* num */) {
-  throw new Error('Not implemented');
+function getFizzBuzz(num) {
+  if (num % 3 === 0 && num % 5 === 0) {
+    return 'FizzBuzz';
+  }
+  if (num % 3 === 0) {
+    return 'Fizz';
+  }
+  if (num % 5 === 0) {
+    return 'Buzz';
+  }
+  return num;
 }
 
 
@@ -43,8 +52,12 @@ function getFizzBuzz(/* num */) {
  *   5  => 120
  *   10 => 3628800
  */
-function getFactorial(/* n */) {
-  throw new Error('Not implemented');
+function getFactorial(n) {
+  let res = 1;
+  for (let i = 1; i <= n; i += 1) {
+    res *= i;
+  }
+  return res;
 }
 
 
@@ -60,8 +73,12 @@ function getFactorial(/* n */) {
  *   5,10  =>  45 ( = 5+6+7+8+9+10 )
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
-function getSumBetweenNumbers(/* n1, n2 */) {
-  throw new Error('Not implemented');
+function getSumBetweenNumbers(n1, n2) {
+  let res = n1;
+  for (let i = n1 + 1; i <= n2; i += 1) {
+    res += i;
+  }
+  return res;
 }
 
 
@@ -80,8 +97,8 @@ function getSumBetweenNumbers(/* n1, n2 */) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isTriangle(a, b, c) {
+  return (a < (b + c)) && (b < (a + c)) && (c < (a + b));
 }
 
 
@@ -117,10 +134,37 @@ function isTriangle(/* a, b, c */) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(/* rect1, rect2 */) {
-  throw new Error('Not implemented');
-}
+function doRectanglesOverlap(rect1, rect2) {
+  let x = false;
+  let y = false;
+  let x1 = false;
+  let y1 = false;
+  for (let i = rect1.left; i < rect1.width; i += 1) {
+    if (rect2.left === i) {
+      x = true;
+    }
+  }
 
+  for (let i = rect1.top; i < rect1.height; i += 1) {
+    if (rect2.top === i) {
+      y = true;
+    }
+  }
+
+  for (let i = rect2.left; i < rect2.width; i += 1) {
+    if (rect1.left === i) {
+      x1 = true;
+    }
+  }
+
+  for (let i = rect2.top; i < rect2.height; i += 1) {
+    if (rect1.top === i) {
+      y1 = true;
+    }
+  }
+
+  return (x && y) || (x1 && y1);
+}
 
 /**
  * Returns true, if point lies inside the circle, otherwise false.
